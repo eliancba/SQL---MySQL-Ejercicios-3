@@ -1,0 +1,28 @@
+11. Mostrar todos los movimientos que aprende pikachu.
+
+select distinct m.nombre
+from movimiento m, pokemon p, pokemon_movimiento_forma pmf
+where p.numero_pokedex=pmf.numero_pokedex and pmf.id_movimiento=m.id_movimiento
+and p.nombre='Pikachu';
+
+12. Mostrar todos los movimientos que aprende pikachu por MT.
+
+select distinct m.nombre
+from movimiento m, pokemon p, pokemon_movimiento_forma pmf, tipo_forma_aprendizaje tfa, forma_aprendizaje fa
+where p.numero_pokedex=pmf.numero_pokedex and pmf.id_movimiento=m.id_movimiento 
+and pmf.id_forma_aprendizaje=fa.id_forma_aprendizaje
+and fa.id_tipo_aprendizaje=tfa.id_tipo_aprendizaje
+and tfa.tipo_aprendizaje = 'MT'
+and p.nombre='Pikachu';
+
+13. Mostrar todos los movimientos de tipo normal que aprende pikachu por nivel.
+
+select distinct m.nombre
+from movimiento m, pokemon p, pokemon_movimiento_forma pmf, tipo_forma_aprendizaje tfa, forma_aprendizaje fa, tipo t
+where p.numero_pokedex=pmf.numero_pokedex and pmf.id_movimiento=m.id_movimiento 
+and pmf.id_forma_aprendizaje=fa.id_forma_aprendizaje
+and fa.id_tipo_aprendizaje=tfa.id_tipo_aprendizaje
+and m.id_tipo=t.id_tipo
+and t.nombre='Normal'
+and tfa.tipo_aprendizaje = 'Nivel'
+and p.nombre='Pikachu';
